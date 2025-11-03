@@ -19,9 +19,9 @@ import streamlit as st
 import requests
 import json
 
+url = st.secrets["N8N_WEBHOOK_URL"]
 # --- Configuration ---
 # Replace with the actual URL of your API endpoint
-API_ENDPOINT = "https://chr1st3ll3.app.n8n.cloud/webhook/1cfaa5e6-51cb-4b26-979c-335699c5fa21"
 
 
 
@@ -69,7 +69,7 @@ if st.button("Send Query 📤"):
 			headers = {
 				"Content-Type": "application/json"
 			}
-			response = requests.post(API_ENDPOINT, json=payload, headers=headers)
+			response = requests.post(url, json=payload, headers=headers)
 			
 			# 3. Handle the Response
 			if response.status_code == 200:
