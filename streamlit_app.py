@@ -59,10 +59,17 @@ eda = st.Page(
     icon=":material/person_add:",
     default=(role == "Admin"),
 )
+chat = st.Page(
+    "Chat/streamlit_n8n.py",
+    title="Chat",
+    icon=":material/person_add:",
+    default=(role == "Requester"),
+)
 account_pages = [logout_page, settings]
 visualization_pages = [visualization,maps,maps2]
 ml_pages = [ml]
 eda_pages = [eda]
+chat_pages = [chat]
 
 st.title("Data Analytics AI")
 st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
@@ -75,6 +82,8 @@ if st.session_state.role in ["Professor", "Team", "PC"]:
     page_dict["Visualization"] = visualization_pages
 if st.session_state.role in ["Professor", "Team"]:
     page_dict["Machine Learning"] = ml_pages
+if st.session_state.role in ["Professor", "Team", "PC"]:
+    page_dict["Chat"] = chat_pages
 
 if len(page_dict) > 0:
     pg = st.navigation({"Account": account_pages} | page_dict)
